@@ -1,11 +1,6 @@
-//Declarando e atribuindo um variável
-var name = "Max";
-
-//Imprimindo no console...
-console.log(name);
-
-var age = 29; //number
-var hasHobbies = true; //boolean
+const name = "Max"; //Usamos const quando não temos intenção de mudar.
+let age = 29; //let é uma forma moderna de declarar variável
+const hasHobbies = true;
 
 function summarizeUser(userName, userAge, userHasHoby) {
   return (
