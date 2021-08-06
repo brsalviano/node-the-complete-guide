@@ -1,17 +1,28 @@
-const hobbies = ["Sports", "Cooking"];
+const person = {
+  name: "Max",
+  age: 29,
+  greet() {
+    console.log("Hi, I am ", this.name);
+  },
+};
 
-const copiedArray = hobbies.slice();
-console.log(hobbies);
+// const printName = (personData) => {
+//   console.log(personData.name);
+// }
 
-//Criando uma cópia usando spread operator.
-const anotherCopy = [...hobbies];
-//Também funciona com objetos {...nomeObjeto}
-
-
-//Rest operator faz o contrário (junta/merge argumentos em um array).
-const toArray = (...args) => {
-  return args;
+//Destructuring: Pegamos só o que nos interessa:
+const printName = ({ name }) => {
+  console.log(name);
 }
 
-//Podemos passar n parâmetros
-console.log(toArray(1, 2, 3, 4));
+const { name, age } = person;
+
+printName(person);
+console.log(name, age);
+
+//Destructuring em arrays
+const hobbies = ['Sports', 'Cooking'];
+const [hobby1, hobby2] = hobbies; //Neste caso, podemos nomear como quisermos...
+
+printName(person);
+console.log(hobby1, hobby2);
