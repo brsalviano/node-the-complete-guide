@@ -29,12 +29,16 @@ const server = http.createServer((req, res) => {
              //Por fim, juntamos os chunks que foram jogados na memória e convertemos em string
             const parsedBody = Buffer.concat(body).toString();
             const message = parsedBody.split('=')[1]; //pegar apenas o conteúdo
-            fs.writeFileSync('message.txt', message); //Escrevendo a mensagem no arquivo message.txt
 
-            //passo a passo para fazer um redirecionamento na mão...  
-            res.statusCode = 302;
-            res.setHeader('Location', '/');
-            return res.end();
+             //Escrevendo a mensagem no arquivo message.txt
+            fs.writeFile('message.txt', message , (err) => {
+                //passo a passo para fazer um redirecionamento na mão...  
+                res.statusCode = 302;
+                res.setHeader('Location', '/');
+                return res.end();
+            });
+
+
         }) 
     }
 
