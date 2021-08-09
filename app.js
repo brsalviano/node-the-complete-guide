@@ -17,13 +17,16 @@ const server = http.createServer((req, res) => {
 
     if (url === '/message' && method === 'POST') {
         //Trabalhando com streams e buffer para ler o corpo da requisição.
-        const body = [];
+        const body = []; //O array vai servir para armazenar os dados em memória.
+
+        //Registrando-se em um event listener para quando os dados chegarem.
         req.on('data', (chunk) => {
             console.log(chunk);
-            body.push(chunk);
+            body.push(chunk); //jogamos na memória...
         });
+        //Event listener para informar o que fazer quando a requisição terminar.
         req.on('end', () => {
-             //junta os chunks e converte em string
+             //Por fim, juntamos os chunks que foram jogados na memória e convertemos em string
             const parsedBody = Buffer.concat(body).toString();
             const message = parsedBody.split('=')[1]; //pegar apenas o conteúdo
             fs.writeFileSync('message.txt', message); //Escrevendo a mensagem no arquivo message.txt
